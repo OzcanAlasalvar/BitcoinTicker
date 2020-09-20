@@ -90,10 +90,10 @@ class SearchActivity :
     }
 
     override fun onItemClick(simpleModel: SimpleModel) {
-        startActivity(
-            Intent(this, DetailActivity::class.java)
-                .putExtra("id", simpleModel.id)
-        )
+        Intent(this, DetailActivity::class.java)
+            .putExtra("id", simpleModel.id).also {
+                startActivity(it)
+                finish()
+            }
     }
-
 }

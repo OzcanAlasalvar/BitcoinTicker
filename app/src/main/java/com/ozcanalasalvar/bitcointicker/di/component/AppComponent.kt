@@ -9,6 +9,7 @@ import com.ozcanalasalvar.bitcointicker.App
 import com.ozcanalasalvar.bitcointicker.ui.detail.DetailActivity
 import com.ozcanalasalvar.bitcointicker.ui.auth.login.LoginActivity
 import com.ozcanalasalvar.bitcointicker.ui.auth.signup.SignUpActivity
+import com.ozcanalasalvar.bitcointicker.ui.main.MainActivity
 import com.ozcanalasalvar.bitcointicker.ui.search.SearchActivity
 import dagger.Component
 import javax.inject.Singleton
@@ -27,6 +28,8 @@ interface AppComponent {
     fun inject(loginActivity: LoginActivity)
 
     fun inject(signUpActivity: SignUpActivity)
+
+    fun inject(mainActivity: MainActivity)
 
     fun application(): Application
 

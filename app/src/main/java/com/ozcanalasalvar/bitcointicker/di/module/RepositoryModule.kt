@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.ozcanalasalvar.bitcointicker.data.repository.data_source.local.LocalDataSource
 import com.ozcanalasalvar.bitcointicker.data.repository.data_source.remote.RemoteDataSource
 import com.ozcanalasalvar.bitcointicker.data.repository.Repository
-import com.ozcanalasalvar.bitcointicker.ViewModelProviderFactory
+import com.ozcanalasalvar.bitcointicker.ui.ViewModelProviderFactory
 import com.ozcanalasalvar.bitcointicker.data.local.shared.PrefManager
 import com.ozcanalasalvar.bitcointicker.data.repository.data_source.remote.FirebaseSource
 import dagger.Module
@@ -29,7 +29,9 @@ class RepositoryModule {
     @Singleton
     @Provides
     fun provideViewModelFactory(repository: Repository): ViewModelProvider.Factory {
-        return ViewModelProviderFactory(repository)
+        return ViewModelProviderFactory(
+            repository
+        )
     }
 
 

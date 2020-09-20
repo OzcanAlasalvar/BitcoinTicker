@@ -15,7 +15,8 @@ import com.ozcanalasalvar.bitcointicker.ui.main.MainActivity
 import javax.inject.Inject
 
 class LoginActivity : BaseActivity<ActivityLoginBinding, AuthViewModel>(
-    AuthViewModel::class.java),
+    AuthViewModel::class.java
+),
     AuthListener {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -44,6 +45,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, AuthViewModel>(
     override fun onSuccess() {
         binding.loading.visibility = View.GONE
         binding.login.visibility = View.VISIBLE
+        startHomeActivity()
     }
 
     override fun onFailure(message: String) {

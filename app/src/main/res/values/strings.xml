@@ -8,4 +8,6 @@
     <string name="don_t_have_an_account_nregister_here">Don\'t have an account.\nRegister Here</string>
     <string name="sign_up">Sign up</string>
     <string name="go_login">Go login</string>
+    <string name="favourites">Favourites</string>
+    <string name="sign_out">Sign Out</string>
 </resources>
