@@ -54,12 +54,9 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, AuthViewModel>(
 
     override fun onStart() {
         super.onStart()
-//        getViewModel().user?.let {
-//            startHomeActivity()
-//        }
-
-        getViewModel()
-
+        getViewModel().user?.let {
+            startHomeActivity()
+        }
     }
 
     private fun startHomeActivity() {
