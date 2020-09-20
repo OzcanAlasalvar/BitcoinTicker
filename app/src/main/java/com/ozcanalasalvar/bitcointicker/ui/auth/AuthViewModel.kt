@@ -47,7 +47,7 @@ class AuthViewModel(private val repository: Repository) : BaseViewModel() {
         )
     }
 
-    fun signup() {
+    fun signUp() {
         if (!isUserEmailValid(email)) {
             authListener?.onFailure("Please type valid email")
             return
