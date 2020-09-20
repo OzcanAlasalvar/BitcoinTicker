@@ -10,4 +10,5 @@
     <string name="go_login">Go login</string>
     <string name="favourites">Favourites</string>
     <string name="sign_out">Sign Out</string>
+    <string name="more">More</string>
 </resources>

@@ -7,6 +7,7 @@ import com.ozcanalasalvar.bitcointicker.data.model.DetailModel
 import com.ozcanalasalvar.bitcointicker.ui.base.BaseViewModel
 import com.ozcanalasalvar.bitcointicker.data.repository.Repository
 import com.ozcanalasalvar.bitcointicker.ui.auth.login.LoginActivity
+import com.ozcanalasalvar.bitcointicker.ui.detail.DetailActivity
 import com.ozcanalasalvar.bitcointicker.ui.search.SearchActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -15,6 +16,9 @@ class MainViewModel(private val repository: Repository) : BaseViewModel() {
 
     val favouriteCoins = MutableLiveData<List<DetailModel>>()
 
+    init {
+        getFavouritesDetails("bitcoin,01coin,bitcoin-2,bitcoin-adult,bitcoin-5000")
+    }
 
     fun getFavouritesDetails(ids: String) {
         disposable.add(

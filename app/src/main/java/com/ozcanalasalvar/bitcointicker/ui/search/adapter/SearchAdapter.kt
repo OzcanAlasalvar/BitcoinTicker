@@ -1,4 +1,4 @@
-package com.ozcanalasalvar.bitcointicker.ui.search
+package com.ozcanalasalvar.bitcointicker.ui.search.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,18 +7,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ozcanalasalvar.bitcointicker.R
 import com.ozcanalasalvar.bitcointicker.data.model.SimpleModel
 import com.ozcanalasalvar.bitcointicker.databinding.SimpleItemLayoutBinding
+import com.ozcanalasalvar.bitcointicker.ui.search.SearchNavigator
 
 class SearchAdapter(val list: ArrayList<SimpleModel>, val navigator: SearchNavigator) :
-    RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {
-
-    class SearchViewHolder(private val binding: SimpleItemLayoutBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-        fun bind(model: SimpleModel, navigator: SearchNavigator) {
-            binding.model = model
-            binding.navigator = navigator
-            binding.executePendingBindings()
-        }
-    }
+    RecyclerView.Adapter<SearchViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -28,7 +20,9 @@ class SearchAdapter(val list: ArrayList<SimpleModel>, val navigator: SearchNavig
             parent,
             false
         )
-        return SearchViewHolder(binding)
+        return SearchViewHolder(
+            binding
+        )
     }
 
     override fun getItemCount(): Int = list.size

@@ -3,7 +3,6 @@ package com.ozcanalasalvar.bitcointicker.ui.search
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.lifecycle.Observer
@@ -14,6 +13,7 @@ import com.ozcanalasalvar.bitcointicker.ui.base.BaseActivity
 import com.ozcanalasalvar.bitcointicker.data.model.SimpleModel
 import com.ozcanalasalvar.bitcointicker.databinding.ActivitySearchBinding
 import com.ozcanalasalvar.bitcointicker.ui.detail.DetailActivity
+import com.ozcanalasalvar.bitcointicker.ui.search.adapter.SearchAdapter
 import javax.inject.Inject
 
 class SearchActivity :
@@ -23,7 +23,11 @@ class SearchActivity :
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    private val adapter = SearchAdapter(arrayListOf(), this)
+    private val adapter =
+        SearchAdapter(
+            arrayListOf(),
+            this
+        )
 
     override fun getLayoutRes(): Int = R.layout.activity_search
 
