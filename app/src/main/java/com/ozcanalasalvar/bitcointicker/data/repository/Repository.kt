@@ -1,6 +1,7 @@
 package com.ozcanalasalvar.bitcointicker.data.repository
 
 import com.ozcanalasalvar.bitcointicker.data.local.shared.PrefManager
+import com.ozcanalasalvar.bitcointicker.data.model.Favourite
 import com.ozcanalasalvar.bitcointicker.data.model.SimpleModel
 import com.ozcanalasalvar.bitcointicker.data.repository.data_source.local.LocalDataSource
 import com.ozcanalasalvar.bitcointicker.data.repository.data_source.remote.firebase.FirebaseSource
@@ -22,6 +23,10 @@ class Repository @Inject constructor(
     fun currentUser() = firebase.currentUser()
 
     fun logout() = firebase.logout()
+
+    fun saveFavourites(userId: String, data: Favourite) = firebase.saveFavourite(userId, data)
+
+    fun readFavourites(userId: String) = firebase.readFavourites(userId)
 
     fun fetchCoinList(): Observable<List<SimpleModel>> {
         return Observable.concatArray(

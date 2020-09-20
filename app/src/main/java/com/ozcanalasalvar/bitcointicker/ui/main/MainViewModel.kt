@@ -4,6 +4,7 @@ import android.content.Intent
 import android.view.View
 import androidx.lifecycle.MutableLiveData
 import com.ozcanalasalvar.bitcointicker.data.model.DetailModel
+import com.ozcanalasalvar.bitcointicker.data.model.FavouriteDataHolder
 import com.ozcanalasalvar.bitcointicker.ui.base.BaseViewModel
 import com.ozcanalasalvar.bitcointicker.data.repository.Repository
 import com.ozcanalasalvar.bitcointicker.ui.auth.login.LoginActivity
@@ -17,7 +18,24 @@ class MainViewModel(private val repository: Repository) : BaseViewModel() {
     val favouriteCoins = MutableLiveData<List<DetailModel>>()
 
     init {
-        getFavouritesDetails("bitcoin,01coin,bitcoin-2,bitcoin-adult,bitcoin-5000")
+       fetchFavourites()
+    }
+
+    fun fetchFavourites(){
+        repository.readFavourites("123")
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val data = task.result
+                    data?.arrayList?.let { list ->
+                        FavouriteDataHolder.saveFavourites(list)
+                        arrayToIdList(list)?.let {
+                            getFavouritesDetails(it)
+                        }
+                    }
+                } else {
+
+                }
+            }
     }
 
     fun getFavouritesDetails(ids: String) {
@@ -44,5 +62,15 @@ class MainViewModel(private val repository: Repository) : BaseViewModel() {
         Intent(view.context, SearchActivity::class.java).also {
             view.context.startActivity(it)
         }
+    }
+
+    private fun arrayToIdList(arrayList: ArrayList<String>): String? {
+        var ids: String? = ""
+        for (x in 0 until arrayList.size) {
+            ids += arrayList[x]
+            if (x != arrayList.size - 1)
+                ids += ","
+        }
+        return ids
     }
 }

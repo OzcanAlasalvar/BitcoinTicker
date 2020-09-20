@@ -114,7 +114,8 @@
                     android:layout_gravity="end"
                     android:gravity="center|end"
                     android:orientation="horizontal"
-                    android:paddingStart="20dp"
+                    android:padding="5dp"
+                    android:paddingStart="30dp"
                     tools:ignore="RtlSymmetry">
 
                     <TextView
@@ -140,7 +141,7 @@
                 android:id="@+id/more_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="5dp"
                 android:orientation="horizontal"
                 android:visibility="gone">
 

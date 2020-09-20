@@ -25,7 +25,7 @@ class MainAdapter(private val arrayList: ArrayList<DetailModel>, val navigator: 
     override fun getItemCount(): Int = arrayList.size
 
     override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
-        holder.bind(arrayList[position],navigator)
+        holder.bind(arrayList[position], navigator)
     }
 
     fun notifyDataChanges(models: List<DetailModel>) {

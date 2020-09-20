@@ -2,6 +2,8 @@ package com.ozcanalasalvar.bitcointicker.ui.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
@@ -20,11 +22,15 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(MainViewMo
     lateinit var viewModelFactory: ViewModelProvider.Factory
     private val adapter = MainAdapter(arrayListOf(), this)
 
+    private lateinit var mHandler: Handler
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.viewModel = getViewModel()
         binding.recyclerViewFav.adapter = adapter
 
+        this.mHandler = Handler()
+        this.mHandler.postDelayed(mRunnable, 60000)
         observeLiveData()
     }
 
@@ -50,6 +56,15 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(MainViewMo
             .putExtra("id", detailModel.id).also {
                 startActivity(it)
             }
+    }
+
+    private val mRunnable: Runnable = object : Runnable {
+        override fun run() {
+
+            getViewModel().fetchFavourites().also {
+                mHandler.postDelayed(this, 10000)
+            }
+        }
     }
 
 }

@@ -51,7 +51,18 @@ class DetailActivity :
             coin?.let {
                 binding.model = it
             }
+        })
 
+        getViewModel().networkError.observe(this, Observer { msg ->
+            msg?.let {
+                showError(it)
+            }
+        })
+
+        getViewModel().networkSuccess.observe(this, Observer { msg ->
+            msg?.let {
+                showSucces(it)
+            }
         })
     }
 
@@ -64,7 +75,7 @@ class DetailActivity :
         override fun run() {
             Toast.makeText(this@DetailActivity, "data updated", Toast.LENGTH_SHORT).show()
             getViewModel().fetchCoinDetail(coinId).also {
-                mHandler.postDelayed(this, 10000)
+                mHandler.postDelayed(this, 60000)
             }
         }
     }
@@ -75,7 +86,7 @@ class DetailActivity :
     }
 
     override fun onAddFavourite() {
-        //todo
+        coinId?.let { getViewModel().addFavourite(it) }
     }
 
     override fun onBackPress() {
