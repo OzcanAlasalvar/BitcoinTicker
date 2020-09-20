@@ -1,4 +1,4 @@
-package com.ozcanalasalvar.bitcointicker.data.cache
+package com.ozcanalasalvar.bitcointicker.data.local.shared
 
 import android.content.SharedPreferences
 import javax.inject.Inject

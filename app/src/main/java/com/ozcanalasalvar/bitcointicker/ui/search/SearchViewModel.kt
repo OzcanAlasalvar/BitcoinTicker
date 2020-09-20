@@ -1,7 +1,7 @@
 package com.ozcanalasalvar.bitcointicker.ui.search
 
 import androidx.lifecycle.MutableLiveData
-import com.ozcanalasalvar.bitcointicker.base.BaseViewModel
+import com.ozcanalasalvar.bitcointicker.ui.base.BaseViewModel
 import com.ozcanalasalvar.bitcointicker.data.model.SimpleModel
 import com.ozcanalasalvar.bitcointicker.data.repository.Repository
 import io.reactivex.android.schedulers.AndroidSchedulers

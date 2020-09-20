@@ -1,4 +1,4 @@
-package com.ozcanalasalvar.bitcointicker.data.cache
+package com.ozcanalasalvar.bitcointicker.data.local.shared
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -14,7 +14,10 @@ class SharedPreference(mContext: Context) {
 
         fun getInstance(mContext: Context): SharedPreference? {
             if (sharedPreference == null) {
-                sharedPreference = SharedPreference(mContext)
+                sharedPreference =
+                    SharedPreference(
+                        mContext
+                    )
             }
             return sharedPreference
         }
@@ -25,7 +28,10 @@ class SharedPreference(mContext: Context) {
 
         fun getInstanceForDagger(mContext: Context): SharedPreferences {
             if (sharedPreference == null) {
-                sharedPreference = SharedPreference(mContext)
+                sharedPreference =
+                    SharedPreference(
+                        mContext
+                    )
             }
             return sharedPreference!!.mUserPreferences
         }

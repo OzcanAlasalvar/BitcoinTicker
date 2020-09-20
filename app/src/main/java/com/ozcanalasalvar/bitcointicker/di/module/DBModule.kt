@@ -2,8 +2,8 @@ package com.ozcanalasalvar.bitcointicker.di.module
 
 import android.app.Application
 import androidx.room.Room
-import com.ozcanalasalvar.bitcointicker.data.local.AppDao
-import com.ozcanalasalvar.bitcointicker.data.local.AppDatabase
+import com.ozcanalasalvar.bitcointicker.data.local.db.AppDao
+import com.ozcanalasalvar.bitcointicker.data.local.db.AppDatabase
 import com.ozcanalasalvar.bitcointicker.data.repository.data_source.local.LocalDataSource
 import dagger.Module
 import dagger.Provides

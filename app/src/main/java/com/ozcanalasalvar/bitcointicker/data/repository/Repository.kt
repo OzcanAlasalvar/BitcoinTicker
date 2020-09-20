@@ -1,8 +1,9 @@
 package com.ozcanalasalvar.bitcointicker.data.repository
 
-import com.ozcanalasalvar.bitcointicker.data.cache.PrefManager
+import com.ozcanalasalvar.bitcointicker.data.local.shared.PrefManager
 import com.ozcanalasalvar.bitcointicker.data.model.SimpleModel
 import com.ozcanalasalvar.bitcointicker.data.repository.data_source.local.LocalDataSource
+import com.ozcanalasalvar.bitcointicker.data.repository.data_source.remote.FirebaseSource
 import com.ozcanalasalvar.bitcointicker.data.repository.data_source.remote.RemoteDataSource
 import io.reactivex.Observable
 import javax.inject.Inject
@@ -10,8 +11,17 @@ import javax.inject.Inject
 class Repository @Inject constructor(
     private val localSource: LocalDataSource,
     private val remoteSource: RemoteDataSource,
-    private val prefManager: PrefManager
+    private val prefManager: PrefManager,
+    private val firebase: FirebaseSource
 ) {
+
+    fun login(email: String, password: String) = firebase.login(email, password)
+
+    fun register(email: String, password: String) = firebase.register(email, password)
+
+    fun currentUser() = firebase.currentUser()
+
+    fun logout() = firebase.logout()
 
     fun fetchCoinList(): Observable<List<SimpleModel>> {
         return Observable.concatArray(

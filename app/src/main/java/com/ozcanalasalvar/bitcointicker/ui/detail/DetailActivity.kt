@@ -7,7 +7,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.ozcanalasalvar.bitcointicker.R
-import com.ozcanalasalvar.bitcointicker.base.BaseActivity
+import com.ozcanalasalvar.bitcointicker.ui.base.BaseActivity
 import com.ozcanalasalvar.bitcointicker.databinding.ActivityDetailBinding
 import javax.inject.Inject
 

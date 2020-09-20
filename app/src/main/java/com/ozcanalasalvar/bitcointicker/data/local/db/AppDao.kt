@@ -1,4 +1,4 @@
-package com.ozcanalasalvar.bitcointicker.data.local
+package com.ozcanalasalvar.bitcointicker.data.local.db
 
 import androidx.room.*
 import com.ozcanalasalvar.bitcointicker.data.model.SimpleModel

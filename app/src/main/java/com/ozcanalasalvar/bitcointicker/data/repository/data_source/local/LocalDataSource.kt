@@ -1,6 +1,6 @@
 package com.ozcanalasalvar.bitcointicker.data.repository.data_source.local
 
-import com.ozcanalasalvar.bitcointicker.data.local.AppDao
+import com.ozcanalasalvar.bitcointicker.data.local.db.AppDao
 import com.ozcanalasalvar.bitcointicker.data.model.SimpleModel
 import io.reactivex.Observable
 import javax.inject.Inject

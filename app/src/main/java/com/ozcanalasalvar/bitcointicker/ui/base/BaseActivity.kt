@@ -1,4 +1,4 @@
-package com.ozcanalasalvar.bitcointicker.base
+package com.ozcanalasalvar.bitcointicker.ui.base
 
 import android.content.Context
 import android.os.Bundle

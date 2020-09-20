@@ -1,4 +1,4 @@
-package com.ozcanalasalvar.bitcointicker.base
+package com.ozcanalasalvar.bitcointicker.ui.base
 
 import android.os.Bundle
 import android.view.LayoutInflater

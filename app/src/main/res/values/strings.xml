@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">Bitcoin Ticker</string>
     <string name="search_reminder">Search coins...</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="sign_in_or_register">Sign in or register</string>
+    <string name="sign_in">Sign in</string>
+    <string name="don_t_have_an_account_nregister_here">Don\'t have an account.\nRegister Here</string>
+    <string name="sign_up">Sign up</string>
+    <string name="go_login">Go login</string>
 </resources>

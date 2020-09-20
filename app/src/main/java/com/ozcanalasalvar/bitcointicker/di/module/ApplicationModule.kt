@@ -3,7 +3,7 @@ package com.ozcanalasalvar.bitcointicker.di.module
 import android.app.Application
 import android.content.SharedPreferences
 import com.ozcanalasalvar.bitcointicker.App
-import com.ozcanalasalvar.bitcointicker.data.cache.SharedPreference
+import com.ozcanalasalvar.bitcointicker.data.local.shared.SharedPreference
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

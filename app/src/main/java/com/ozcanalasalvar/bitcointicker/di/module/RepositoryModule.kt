@@ -5,7 +5,8 @@ import com.ozcanalasalvar.bitcointicker.data.repository.data_source.local.LocalD
 import com.ozcanalasalvar.bitcointicker.data.repository.data_source.remote.RemoteDataSource
 import com.ozcanalasalvar.bitcointicker.data.repository.Repository
 import com.ozcanalasalvar.bitcointicker.ViewModelProviderFactory
-import com.ozcanalasalvar.bitcointicker.data.cache.PrefManager
+import com.ozcanalasalvar.bitcointicker.data.local.shared.PrefManager
+import com.ozcanalasalvar.bitcointicker.data.repository.data_source.remote.FirebaseSource
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -19,15 +20,24 @@ class RepositoryModule {
     fun provideRepository(
         localDataSource: LocalDataSource,
         remoteDataSource: RemoteDataSource,
-        prefManager: PrefManager
+        prefManager: PrefManager,
+        firebase: FirebaseSource
     ): Repository {
-        return Repository(localDataSource, remoteDataSource, prefManager)
+        return Repository(localDataSource, remoteDataSource, prefManager, firebase)
     }
 
     @Singleton
     @Provides
     fun provideViewModelFactory(repository: Repository): ViewModelProvider.Factory {
         return ViewModelProviderFactory(repository)
+    }
+
+
+    @Singleton
+    @Provides
+    fun provideFirebaseSource(
+    ): FirebaseSource {
+        return FirebaseSource()
     }
 
 }
