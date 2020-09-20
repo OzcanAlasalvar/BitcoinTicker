@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Bitcoin Ticker</string>
+    <string name="search_reminder">Search coins...</string>
+</resources>

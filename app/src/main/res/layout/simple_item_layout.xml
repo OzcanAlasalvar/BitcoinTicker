@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.ozcanalasalvar.bitcointicker.data.model.SimpleModel" />
+
+        <variable
+            name="navigator"
+            type="com.ozcanalasalvar.bitcointicker.ui.search.SearchNavigator" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/shadow_bg"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_marginStart="15dp"
+            android:gravity="start|center"
+            android:onClick="@{()->navigator.onItemClick(model)}"
+            android:orientation="horizontal"
+            android:padding="15dp">
+
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/circle_bg"
+                android:backgroundTint="@color/light_grey"
+                android:padding="5dp"
+                android:src="@drawable/money" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="start|center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:text="@{model.name}"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    tools:text="Bit Coin" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:text="@{model.symbol}"
+                    android:textColor="@color/grey"
+                    android:textSize="13sp"
+                    tools:text="bt" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</layout>
