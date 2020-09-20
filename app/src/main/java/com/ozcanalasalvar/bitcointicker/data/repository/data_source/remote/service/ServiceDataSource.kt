@@ -1,11 +1,11 @@
-package com.ozcanalasalvar.bitcointicker.data.repository.data_source.remote
+package com.ozcanalasalvar.bitcointicker.data.repository.data_source.remote.service
 
 import com.ozcanalasalvar.bitcointicker.data.remote.ApiService
 import javax.inject.Inject
 
-class RemoteDataSource @Inject constructor(
+class ServiceDataSource @Inject constructor(
     private val apiService: ApiService
-) : RemoteSource {
+) : ServiceSource {
 
     override fun getCoins(
         currency: String,

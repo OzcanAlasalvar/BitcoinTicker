@@ -2,11 +2,11 @@ package com.ozcanalasalvar.bitcointicker.di.module
 
 import androidx.lifecycle.ViewModelProvider
 import com.ozcanalasalvar.bitcointicker.data.repository.data_source.local.LocalDataSource
-import com.ozcanalasalvar.bitcointicker.data.repository.data_source.remote.RemoteDataSource
+import com.ozcanalasalvar.bitcointicker.data.repository.data_source.remote.service.ServiceDataSource
 import com.ozcanalasalvar.bitcointicker.data.repository.Repository
 import com.ozcanalasalvar.bitcointicker.ui.ViewModelProviderFactory
 import com.ozcanalasalvar.bitcointicker.data.local.shared.PrefManager
-import com.ozcanalasalvar.bitcointicker.data.repository.data_source.remote.FirebaseSource
+import com.ozcanalasalvar.bitcointicker.data.repository.data_source.remote.firebase.FirebaseSource
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -19,11 +19,11 @@ class RepositoryModule {
     @Provides
     fun provideRepository(
         localDataSource: LocalDataSource,
-        remoteDataSource: RemoteDataSource,
+        serviceDataSource: ServiceDataSource,
         prefManager: PrefManager,
         firebase: FirebaseSource
     ): Repository {
-        return Repository(localDataSource, remoteDataSource, prefManager, firebase)
+        return Repository(localDataSource, serviceDataSource, prefManager, firebase)
     }
 
     @Singleton

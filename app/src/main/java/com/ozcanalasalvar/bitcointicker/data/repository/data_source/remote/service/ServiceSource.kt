@@ -1,11 +1,10 @@
-package com.ozcanalasalvar.bitcointicker.data.repository.data_source.remote
+package com.ozcanalasalvar.bitcointicker.data.repository.data_source.remote.service
 
 import com.ozcanalasalvar.bitcointicker.data.model.DetailModel
 import com.ozcanalasalvar.bitcointicker.data.model.SimpleModel
 import io.reactivex.Observable
-import io.reactivex.Single
 
-interface RemoteSource {
+interface ServiceSource {
     fun getCoins(
         currency: String,
         ids: String?,

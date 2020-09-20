@@ -1,7 +1,7 @@
 package com.ozcanalasalvar.bitcointicker.di.module
 
 import com.ozcanalasalvar.bitcointicker.data.remote.ApiService
-import com.ozcanalasalvar.bitcointicker.data.repository.data_source.remote.RemoteDataSource
+import com.ozcanalasalvar.bitcointicker.data.repository.data_source.remote.service.ServiceDataSource
 import com.ozcanalasalvar.bitcointicker.BuildConfig
 import dagger.Module
 import dagger.Provides
@@ -67,8 +67,8 @@ class NetworkModule {
     @Provides
     fun provideRemoteDataSource(
         apiService: ApiService
-    ): RemoteDataSource {
-        return RemoteDataSource(
+    ): ServiceDataSource {
+        return ServiceDataSource(
             apiService
         )
     }
