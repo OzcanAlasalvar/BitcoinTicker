@@ -96,6 +96,7 @@
             android:orientation="vertical">
 
             <ImageView
+                android:id="@+id/image_coin"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_marginTop="15dp"

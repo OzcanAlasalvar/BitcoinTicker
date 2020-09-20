@@ -12,16 +12,6 @@ class SharedPreference(mContext: Context) {
         private var sharedPreference: SharedPreference? = null
         var pageDetector: Int = 0
 
-        fun getInstance(mContext: Context): SharedPreference? {
-            if (sharedPreference == null) {
-                sharedPreference =
-                    SharedPreference(
-                        mContext
-                    )
-            }
-            return sharedPreference
-        }
-
         fun get(): SharedPreference? {
             return sharedPreference
         }

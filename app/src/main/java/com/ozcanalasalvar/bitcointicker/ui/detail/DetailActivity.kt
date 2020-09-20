@@ -7,8 +7,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.ozcanalasalvar.bitcointicker.R
-import com.ozcanalasalvar.bitcointicker.ui.base.BaseActivity
 import com.ozcanalasalvar.bitcointicker.databinding.ActivityDetailBinding
+import com.ozcanalasalvar.bitcointicker.ui.base.BaseActivity
+import com.ozcanalasalvar.bitcointicker.utils.downLoadFromUrl
 import javax.inject.Inject
 
 
@@ -32,17 +33,20 @@ class DetailActivity :
         binding.navigator = this
         intent.extras?.let {
             coinId = it.getString("id")
+            val url = it.getString("imageUrl")
+            val imageTransitionName: String? = it.getString("transitionImage")
+            binding.imageCoin.transitionName = imageTransitionName
+            binding.imageCoin.downLoadFromUrl(url)
         }
 
         if (!coinId.isNullOrEmpty()) {
-            getViewModel().fetchCoinDetail(coinId)
+            getViewModel().coinId = coinId
+            getViewModel().fetchCoinDetail()
         } else {
             finish()
         }
-
-
         this.mHandler = Handler()
-        this.mHandler.postDelayed(mRunnable, 10000)
+        this.mHandler.postDelayed(mRunnable, 60000)
         observeLiveData()
     }
 
@@ -64,20 +68,33 @@ class DetailActivity :
                 showSucces(it)
             }
         })
+
+        getViewModel().isFavourite.observe(this, Observer { isFav ->
+            isFav?.let {
+                binding.imgAddFav.setImageResource(if (it) R.drawable.like else R.drawable.dislike)
+            }
+        })
     }
 
     override fun onInject() {
         getApplicationComponent().inject(this)
     }
 
-
     private val mRunnable: Runnable = object : Runnable {
         override fun run() {
             Toast.makeText(this@DetailActivity, "data updated", Toast.LENGTH_SHORT).show()
-            getViewModel().fetchCoinDetail(coinId).also {
+            getViewModel().fetchCoinDetail().also {
                 mHandler.postDelayed(this, 60000)
             }
         }
+    }
+
+    override fun onAddFavourite() {
+        coinId?.let { getViewModel().addFavourite() }
+    }
+
+    override fun onBackPress() {
+        super.onBackPressed()
     }
 
     override fun onPause() {
@@ -85,11 +102,5 @@ class DetailActivity :
         mHandler.removeCallbacks(mRunnable);
     }
 
-    override fun onAddFavourite() {
-        coinId?.let { getViewModel().addFavourite(it) }
-    }
 
-    override fun onBackPress() {
-        super.onBackPressed()
-    }
 }

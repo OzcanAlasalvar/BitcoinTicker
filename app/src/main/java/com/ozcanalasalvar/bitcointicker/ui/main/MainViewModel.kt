@@ -17,19 +17,23 @@ class MainViewModel(private val repository: Repository) : BaseViewModel() {
 
     val favouriteCoins = MutableLiveData<List<DetailModel>>()
 
-    init {
-       fetchFavourites()
+    private val user by lazy {
+        repository.currentUser()
     }
 
-    fun fetchFavourites(){
-        repository.readFavourites("123")
+    init {
+        fetchFavourites()
+    }
+
+    fun fetchFavourites() {
+        repository.readFavourites(user!!.uid)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     val data = task.result
                     data?.arrayList?.let { list ->
                         FavouriteDataHolder.saveFavourites(list)
                         arrayToIdList(list)?.let {
-                            getFavouritesDetails(it)
+                            getFavouritesDetails(it, list.size)
                         }
                     }
                 } else {
@@ -38,9 +42,9 @@ class MainViewModel(private val repository: Repository) : BaseViewModel() {
             }
     }
 
-    fun getFavouritesDetails(ids: String) {
+    private fun getFavouritesDetails(ids: String, size: Int) {
         disposable.add(
-            repository.getCoins("try", ids, "market_cap_desc", 30, 1, false, "24h")
+            repository.getCoins("try", ids, "market_cap_desc", size, 1, false, "24h")
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe { data ->

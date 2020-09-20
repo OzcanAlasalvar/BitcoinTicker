@@ -1,9 +1,7 @@
 package com.ozcanalasalvar.bitcointicker.ui.base
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.annotation.LayoutRes

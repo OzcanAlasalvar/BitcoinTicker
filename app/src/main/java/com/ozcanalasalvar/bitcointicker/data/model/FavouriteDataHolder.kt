@@ -13,5 +13,10 @@ object FavouriteDataHolder {
         arrayList.add(id)
     }
 
+    fun remove(id: String) {
+        if (arrayList.contains(id))
+            arrayList.remove(id)
+    }
+
     fun getList(): ArrayList<String> = arrayList
 }

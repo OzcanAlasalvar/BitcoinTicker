@@ -14,10 +14,18 @@ class DetailViewModel(private val repository: Repository) : BaseViewModel() {
     val coin = MutableLiveData<DetailModel>()
     val networkError = MutableLiveData<String>()
     val networkSuccess = MutableLiveData<String>()
+    var isFavourite = MutableLiveData<Boolean>()
 
-    fun fetchCoinDetail(id: String?) {
+    var coinId: String? = null
+
+    private val user by lazy {
+        repository.currentUser()
+    }
+
+    fun fetchCoinDetail() {
+        isFavourite.value = coinId?.let { isExist(it) }
         disposable.add(
-            repository.getCoins("try", id, "market_cap_desc", 1, 1, false, "24h")
+            repository.getCoins("try", coinId, "market_cap_desc", 1, 1, false, "24h")
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .doOnError {
@@ -32,22 +40,33 @@ class DetailViewModel(private val repository: Repository) : BaseViewModel() {
     }
 
 
-    fun addFavourite(coinId: String) {
-        if (!isExist(coinId)) {
-            FavouriteDataHolder.addFavourite(coinId)
-            disposable.add(
-                repository.saveFavourites("123", Favourite(FavouriteDataHolder.getList()))
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe({
-                        networkSuccess.value = "Operation success"
-                    }, {
-                        networkError.value = "Operation error"
-                    })
-            )
-        } else {
-            networkError.value = "Already exist"
+    fun addFavourite() {
+        coinId?.let { id ->
+            if (!isExist(id)) {
+                FavouriteDataHolder.addFavourite(id)
+                changeFavouriteStatus(false)
+            } else {
+                FavouriteDataHolder.remove(id)
+                changeFavouriteStatus(true)
+            }
+
         }
+
+    }
+
+    private fun changeFavouriteStatus(status: Boolean) {
+        disposable.add(
+            repository.saveFavourites(user!!.uid, Favourite(FavouriteDataHolder.getList()))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    isFavourite.value = !status
+                    networkSuccess.value = "Operation success"
+                }, {
+                    isFavourite.value = status
+                    networkError.value = "Operation error"
+                })
+        )
     }
 
     private fun isExist(id: String): Boolean {
