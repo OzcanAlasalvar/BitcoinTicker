@@ -16,6 +16,7 @@ import io.reactivex.schedulers.Schedulers
 class MainViewModel(private val repository: Repository) : BaseViewModel() {
 
     val favouriteCoins = MutableLiveData<List<DetailModel>>()
+    val loading = MutableLiveData<Boolean>()
 
     private val user by lazy {
         repository.currentUser()
@@ -26,19 +27,23 @@ class MainViewModel(private val repository: Repository) : BaseViewModel() {
     }
 
     fun fetchFavourites() {
+        loading.value = true
         repository.readFavourites(user!!.uid)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     val data = task.result
-                    data?.arrayList?.let { list ->
-                        FavouriteDataHolder.saveFavourites(list)
-                        arrayToIdList(list)?.let {
-                            getFavouritesDetails(it, list.size)
+                    if (data?.arrayList != null) {
+                        val list = data.arrayList
+                        list?.let { array ->
+                            FavouriteDataHolder.saveFavourites(array)
+                            FavouriteDataHolder.getIds()?.let {
+                                getFavouritesDetails(it, array.size)
+                            }
                         }
                     }
-                } else {
-
+                    loading.value = data?.arrayList == null
                 }
+                loading.value = !task.isSuccessful
             }
     }
 
@@ -47,8 +52,13 @@ class MainViewModel(private val repository: Repository) : BaseViewModel() {
             repository.getCoins("try", ids, "market_cap_desc", size, 1, false, "24h")
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
+                .doOnError {
+                    loading.value = false
+                    favouriteCoins.value = null
+                }
                 .subscribe { data ->
                     favouriteCoins.value = data
+                    loading.value = false
                 }
         )
     }
@@ -66,15 +76,5 @@ class MainViewModel(private val repository: Repository) : BaseViewModel() {
         Intent(view.context, SearchActivity::class.java).also {
             view.context.startActivity(it)
         }
-    }
-
-    private fun arrayToIdList(arrayList: ArrayList<String>): String? {
-        var ids: String? = ""
-        for (x in 0 until arrayList.size) {
-            ids += arrayList[x]
-            if (x != arrayList.size - 1)
-                ids += ","
-        }
-        return ids
     }
 }

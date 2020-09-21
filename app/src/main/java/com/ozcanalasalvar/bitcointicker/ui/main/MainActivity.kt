@@ -3,6 +3,7 @@ package com.ozcanalasalvar.bitcointicker.ui.main
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.app.ActivityOptionsCompat
@@ -49,6 +50,12 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(MainViewMo
         getViewModel().favouriteCoins.observe(this, Observer { coins ->
             coins?.let {
                 adapter.notifyDataChanges(it)
+            }
+        })
+
+        getViewModel().loading.observe(this, Observer { load ->
+            load?.let {
+                binding.loading.visibility = if (load) View.VISIBLE else View.GONE
             }
         })
     }

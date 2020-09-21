@@ -19,4 +19,14 @@ object FavouriteDataHolder {
     }
 
     fun getList(): ArrayList<String> = arrayList
+
+    fun getIds(): String? {
+        var ids: String? = ""
+        for (x in 0 until arrayList.size) {
+            ids += arrayList[x]
+            if (x != arrayList.size - 1)
+                ids += ","
+        }
+        return ids
+    }
 }
