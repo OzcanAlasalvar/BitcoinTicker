@@ -26,9 +26,6 @@ fun View.endRotate(duration: Int) {
         .start()
 }
 
-/**
- * Xml image load binding
- */
 @BindingAdapter("android:downloadUrl")
 fun loadImage(view: ImageView, url: String?) {
     view.downLoadFromUrl(url)
