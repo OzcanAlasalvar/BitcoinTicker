@@ -34,9 +34,6 @@ fun loadImage(view: ImageView, url: String?) {
     view.downLoadFromUrl(url)
 }
 
-/**
- * This function usa header options for DH
- */
 fun ImageView.downLoadFromUrl(url: String?) {
     Glide.with(context).load(url).into(this)
 }

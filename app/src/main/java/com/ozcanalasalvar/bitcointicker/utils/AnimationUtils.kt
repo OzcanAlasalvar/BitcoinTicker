@@ -18,7 +18,6 @@ class AnimationUtils {
             v.measure(matchParentMeasureSpec, wrapContentMeasureSpec)
             val targetHeight: Int = v.measuredHeight
 
-            // Older versions of android (pre API 21) cancel animations for views with a height of 0.
             v.layoutParams.height = 1
             v.visibility = View.VISIBLE
             val a: Animation = object : Animation() {
@@ -26,7 +25,7 @@ class AnimationUtils {
                     interpolatedTime: Float,
                     t: Transformation?
                 ) {
-                    v.getLayoutParams().height =
+                    v.layoutParams.height =
                         if (interpolatedTime == 1f) ViewGroup.LayoutParams.WRAP_CONTENT else (targetHeight * interpolatedTime).toInt()
                     v.requestLayout()
                 }
