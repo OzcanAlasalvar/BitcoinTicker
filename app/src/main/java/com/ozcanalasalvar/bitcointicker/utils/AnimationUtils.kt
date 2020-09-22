@@ -41,7 +41,6 @@ class AnimationUtils {
             v.startAnimation(a)
         }
 
-
         fun collapseWithArrow(v: View, turn: View) {
             val initialHeight: Int = v.measuredHeight
             val a: Animation = object : Animation() {
