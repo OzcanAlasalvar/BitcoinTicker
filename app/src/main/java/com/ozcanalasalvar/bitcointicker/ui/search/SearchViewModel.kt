@@ -6,8 +6,9 @@ import com.ozcanalasalvar.bitcointicker.data.model.SimpleModel
 import com.ozcanalasalvar.bitcointicker.data.repository.Repository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
-class SearchViewModel(private val repository: Repository) : BaseViewModel() {
+class SearchViewModel @Inject constructor(private val repository: Repository) : BaseViewModel() {
 
     val searchList = MutableLiveData<List<SimpleModel>>()
     val showLoading = MutableLiveData<Boolean>()

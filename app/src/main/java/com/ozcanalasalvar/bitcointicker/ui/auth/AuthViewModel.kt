@@ -9,8 +9,9 @@ import com.ozcanalasalvar.bitcointicker.ui.auth.signup.SignUpActivity
 import com.ozcanalasalvar.bitcointicker.ui.base.BaseViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
-class AuthViewModel(private val repository: Repository) : BaseViewModel() {
+class AuthViewModel @Inject constructor(private val repository: Repository) : BaseViewModel() {
 
     var email: String? = null
     var password: String? = null

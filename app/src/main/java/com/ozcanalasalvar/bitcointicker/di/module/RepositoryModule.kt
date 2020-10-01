@@ -28,15 +28,6 @@ class RepositoryModule {
 
     @Singleton
     @Provides
-    fun provideViewModelFactory(repository: Repository): ViewModelProvider.Factory {
-        return ViewModelProviderFactory(
-            repository
-        )
-    }
-
-
-    @Singleton
-    @Provides
     fun provideFirebaseSource(
     ): FirebaseSource {
         return FirebaseSource()

@@ -12,8 +12,9 @@ import com.ozcanalasalvar.bitcointicker.ui.detail.DetailActivity
 import com.ozcanalasalvar.bitcointicker.ui.search.SearchActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
-class MainViewModel(private val repository: Repository) : BaseViewModel() {
+class MainViewModel @Inject constructor(private val repository: Repository) : BaseViewModel() {
 
     val favouriteCoins = MutableLiveData<List<DetailModel>>()
     val loading = MutableLiveData<Boolean>()

@@ -8,8 +8,9 @@ import com.ozcanalasalvar.bitcointicker.data.model.FavouriteDataHolder
 import com.ozcanalasalvar.bitcointicker.data.repository.Repository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
-class DetailViewModel(private val repository: Repository) : BaseViewModel() {
+class DetailViewModel @Inject constructor(private val repository: Repository) : BaseViewModel() {
 
     val coin = MutableLiveData<DetailModel>()
     val networkError = MutableLiveData<String>()
