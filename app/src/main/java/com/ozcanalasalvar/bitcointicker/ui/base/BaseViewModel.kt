@@ -1,7 +1,5 @@
 package com.ozcanalasalvar.bitcointicker.ui.base
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.coroutines.CoroutineScope
