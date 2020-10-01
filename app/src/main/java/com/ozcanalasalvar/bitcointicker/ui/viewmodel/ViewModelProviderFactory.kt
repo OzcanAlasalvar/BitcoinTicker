@@ -1,12 +1,7 @@
-package com.ozcanalasalvar.bitcointicker.ui
+package com.ozcanalasalvar.bitcointicker.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.ozcanalasalvar.bitcointicker.data.repository.Repository
-import com.ozcanalasalvar.bitcointicker.ui.detail.DetailViewModel
-import com.ozcanalasalvar.bitcointicker.ui.auth.AuthViewModel
-import com.ozcanalasalvar.bitcointicker.ui.main.MainViewModel
-import com.ozcanalasalvar.bitcointicker.ui.search.SearchViewModel
 import javax.inject.Inject
 import javax.inject.Provider
 

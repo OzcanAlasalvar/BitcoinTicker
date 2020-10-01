@@ -1,10 +1,8 @@
 package com.ozcanalasalvar.bitcointicker.di.module
 
-import androidx.lifecycle.ViewModelProvider
 import com.ozcanalasalvar.bitcointicker.data.repository.data_source.local.LocalDataSource
 import com.ozcanalasalvar.bitcointicker.data.repository.data_source.remote.service.ServiceDataSource
 import com.ozcanalasalvar.bitcointicker.data.repository.Repository
-import com.ozcanalasalvar.bitcointicker.ui.ViewModelProviderFactory
 import com.ozcanalasalvar.bitcointicker.data.local.shared.PrefManager
 import com.ozcanalasalvar.bitcointicker.data.repository.data_source.remote.firebase.FirebaseSource
 import dagger.Module

@@ -2,7 +2,7 @@ package com.ozcanalasalvar.bitcointicker.di.module
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.ozcanalasalvar.bitcointicker.ui.ViewModelProviderFactory
+import com.ozcanalasalvar.bitcointicker.ui.viewmodel.ViewModelProviderFactory
 import com.ozcanalasalvar.bitcointicker.ui.auth.AuthViewModel
 import com.ozcanalasalvar.bitcointicker.ui.detail.DetailViewModel
 import com.ozcanalasalvar.bitcointicker.ui.main.MainViewModel
